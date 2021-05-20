@@ -1,0 +1,65 @@
+# Manim を使うまでの道のりの記録.
+
+
+## 2021/05/20
+
+つかっているのはdebian 10.
+pip3とかはすでに入っているので, それを使ってまずはインストールしたい.
+
+とりあえず, 以下を叩いた.
+```
+pip3  install --user manimlib
+```
+ argparse, colour, numpy, opencv-python, progressbar, pydub, scipy, tqdm, manimlib がインストールされた.
+opencv のインストール/コンパイルに時間がかかっているようで数時間かかったが謎.
+
+とりあえず, 検索して引っかかったページ [1] には,
+`cairo`, `ffmpeg`, `sox`, あとオプションで `latex` をいれとけと書いてあるように見える.
+ffmpegは普段使っているので多分すでに入っている, latexも同様.
+cairoとsoxはわからんので放置.
+
+ [1] https://pypi.org/project/manimlib/
+
+しかし, [1] をよく見るとバージョンが 0.2.0 で [2] の方が新しいので以下を叩いた:
+```
+pip3  install --user manim
+```
+
+[2] https://pypi.org/project/manim/
+ 
+
+`pangocairo >= 1.30.0 is required` と怒られてインストール失敗.
+`apt-get install libpangocairo`するものの
+`libpangocairo-1.0-0 はすでに最新バージョン (1.42.4-8~deb10u1) です。`
+とのこと.
+`apt-get install libpango1.0-dev`してみる.
+
+
+`rich 6.2.0 has requirement pygments<3.0.0,>=2.6.0, but you'll have pygments 2.3.1 which is incompatible.`
+と言われる.
+`pip3 install --user pygments==2.6.0`
+
+`RuntimeError: CMake must be installed to build the following extensions: mapbox_earcut`
+と言われるので,
+`apt-get install cmake`
+
+
+`--user`をつけたせいで, パスが通ったところには, `manim` というコマンドは見当たらない.
+`~/.local/bin/manim`はあった.
+
+
+とりあえず, コマンドはあるので, ちゃんと使えるのかを検証するために, サンプルが欲しいが , [2] を見て USAGE のところをやることにする.
+
+`20200520`で`example.py` を作成.
+次を叩くと動画が再生された.
+```
+~/.local/bin/manim -p -ql example.py SquareToCircle
+```
+このコマンドにより, `media/videos/example/480p15/SquareToCircle.mp4` が生成されていた.
+
+
+とりあえず動いたようなのでひとまず終わり.
+
+
+
+

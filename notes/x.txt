@@ -74,4 +74,22 @@ pip3  install --user manim
 `from manim import *` をやめ
 `import manim` にし, すべて`manim`からのフルパスで書くことにする.
 結構深い.
+[05017089e3f4fd42d79228bf4c5624a9c0231880]
 
+
+叩くコマンドから `-p` を除くと自動再生はしないようだ.
+```
+~/.local/bin/manim -ql example.py SquareToCircle
+```
+
+` module_ops.py:85 Squa is not in the script`
+というエラーが出ているがこれはたぶん自分のミスではなさそうなので放置.
+
+
+`self.play(manim.animation.creation.Create(square))`
+のかわりに,
+`self.add(square)`
+をおくと, いきなり四角形が置かれる.
+```
+~/.local/bin/manim -ql example.py PutSquareToCircle
+```

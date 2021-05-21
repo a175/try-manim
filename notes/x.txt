@@ -54,7 +54,7 @@ pip3  install --user manim
 
 とりあえず, コマンドはあるので, ちゃんと使えるのかを検証するために, サンプルが欲しいが , [2] を見て USAGE のところをやることにする.
 
-`20200520`で`example.py` を作成.
+`test/20200520`で`example.py` を作成.
 次を叩くと動画が再生された.
 ```
 ~/.local/bin/manim -p -ql example.py SquareToCircle
@@ -66,4 +66,12 @@ pip3  install --user manim
 
 
 
+
+## 2021/05/21
+
+昨日のソースを, `test/20210521`にコピーし, 本格的にいじっていくことにする.
+まず, とりあえず, 名前空間を理解するために,
+`from manim import *` をやめ
+`import manim` にし, すべて`manim`からのフルパスで書くことにする.
+結構深い.
 

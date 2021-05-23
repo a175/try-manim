@@ -191,6 +191,12 @@ self.play(fadeinanimation)
 これらは, アニメーションになるわけではない.
 
 
+図形をグループ化するなら,
+`manim.mobject.types.vectorized_mobject.VGroup`
+を使う.
+`manim.mobject.types.vectorized_mobject.VGroup(circle,polygon1,polygon2)`
+のように可変個数引数として図形を与えれば良い.
+
 * `manim.animation.creation.Create()`
 * `manim.animation.fading.FadeIn()`
 * `manim.animation.fading.FadeOut()`

@@ -150,8 +150,23 @@ class MyScene(manim.scene.scene.Scene):
 待ち時間を設ける必要がある.
 
 
+アニメーションを行うには,
+`manim.animation.`にあるものを使い`self.play`する.
+例えば,
+フェードインが定義されているのは
+`manim.animation.fading.FadeIn`
+である.
+`circle = manim.mobject.geometry.Circle()`
+として作った円をフェードインするには,
+次の様にやる:
+```
+fadeinanimation=manim.animation.fading.FadeIn(circle)
+self.play(fadeinanimation)
+```
+
+
 あとは, 次のうち基本的なものをいくつか知っていれば十分使えそうである:
-* `manim.mobject` にある図形
+* `manim.mobject` にある図形 (`manim.mobject.geometry`に基本的な図形がある)
 * 図形の変更方法.
 * `manim.animation.` にあるアニメーションの種類.
 * 色の指定.
@@ -162,9 +177,19 @@ class MyScene(manim.scene.scene.Scene):
 
 
 
+`manim.mobject.geometry.Circle()` は円.
+`manim.mobject.geometry.RegularPolygon()` は多角形.
+
+一旦作った後に,
+図形のクラスが持っている,
+`.rotate()`
+や
+`.shift()`
+などで変形や移動をして使う.
+これらは, アニメーションになるわけではない.
 
 
-
+`manim.animation.creation.Create()`
 
 
 

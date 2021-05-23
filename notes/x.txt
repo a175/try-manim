@@ -196,8 +196,16 @@ self.play(fadeinanimation)
 を使う.
 `manim.mobject.types.vectorized_mobject.VGroup(circle,polygon1,polygon2)`
 のように可変個数引数として図形を与えれば良い.
+可変引数なので, もし, リストとして図形を持っているなら次のように行う:
+```
+li = circle,polygon1,polygon2
+manim.mobject.types.vectorized_mobject.VGroup(*li)
+```
 
-* `manim.animation.creation.Create()`
+
+
+アニメーションは例えば以下のものがある:
+* `manim.animation.creation.Create()` 
 * `manim.animation.fading.FadeIn()`
 * `manim.animation.fading.FadeOut()`
 

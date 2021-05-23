@@ -191,7 +191,6 @@ self.play(fadeinanimation)
 などで変形や移動をして使えばよい.
 これらは, アニメーションになるわけではない.
 基本的に,
-
 角度などは `manim.constants.`にある定数を使う.
 * 円周率: `manim.constants.PI`
 * 円周率の二倍: `manim.constants.TAU`
@@ -209,6 +208,11 @@ li = circle,polygon1,polygon2
 manim.mobject.types.vectorized_mobject.VGroup(*li)
 ```
 
+色については, 図形オブジェクトを作る際に,
+`color`というキーワード引数を使えば良い.
+作ったあとなら, `.set_color()`で色を変更できる.
+色の指定には,
+定数を使ってもよいが, `'#123456'`みたに文字列で与えてもよい.
 
 
 アニメーションは例えば以下のものがある:

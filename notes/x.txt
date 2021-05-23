@@ -93,3 +93,56 @@ pip3  install --user manim
 ```
 ~/.local/bin/manim -ql example.py PutSquareToCircle
 ```
+
+
+## 2021/05/23
+
+少しだけ詳しく追うことにする.
+
+manimで動画を作るにはだいたい次の手順を踏めばよいということなのだろう:
+動画のためのファルをつくる.  例えば,
+```
+example.py
+```
+とかを用意する.
+
+そのファイルでは, まずライブラリのインポート.
+```
+import manim
+```
+
+`manim.scene.scene.Scene`
+を拡張したクラスを用意し,
+`construct(self)` 
+を実装.
+`construct`に動画のシナリオを書いていく.
+基本的には,
+`manim.mobject.`にあるクラスが図形で
+そのインスタンスを要しておく.
+その上で, `self.add` とか `self.play` などとやって,
+動画に追加していくという形のようだ.
+例えば,
+```
+class MyScene(manim.scene.scene.Scene):
+    def construct(self):
+        circle = manim.mobject.geometry.Circle()
+        self.add(circle)
+        self.wait()
+```
+
+`example.py` にある `MyScene` というクラスの動画を実際に作るには,
+次の様にやると, 動画がコンパイルされる.
+```
+~/.local/bin/manim -ql example.py MyScene
+```
+`-ql`は低画質を意味するオプション.
+出来上がるファイルは,
+`media/videos/example/480p15/`
+みたいなところ.
+
+単に, `add`しただけだと, 
+アニメーションはないので (0秒の動画), 動画は作られない.
+`png`ファイルは作成されている.
+固定画像の動画にするなら, `self.wait()` とでもして,
+待ち時間を設ける必要がある.
+

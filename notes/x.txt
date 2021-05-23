@@ -184,11 +184,18 @@ self.play(fadeinanimation)
 よくわからなかった.
 一旦作った後に,
 図形のクラスが持っている,
-`.rotate()`
-や
-`.shift()`
+`.rotate()`,
+`.rotate_about_origin()`,
+`.shift()`,
+`.scale()`
 などで変形や移動をして使えばよい.
 これらは, アニメーションになるわけではない.
+基本的に,
+
+角度などは `manim.constants.`にある定数を使う.
+* 円周率: `manim.constants.PI`
+* 円周率の二倍: `manim.constants.TAU`
+などがある.
 
 
 図形をグループ化するなら,

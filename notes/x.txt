@@ -177,19 +177,23 @@ self.play(fadeinanimation)
 
 
 
-`manim.mobject.geometry.Circle()` は円.
-`manim.mobject.geometry.RegularPolygon()` は多角形.
+* `manim.mobject.geometry.Circle()` は円.
+* `manim.mobject.geometry.RegularPolygon()` は多角形.
 
+図形は作成時に座標などを指定できるのかもしれないが,
+よくわからなかった.
 一旦作った後に,
 図形のクラスが持っている,
 `.rotate()`
 や
 `.shift()`
-などで変形や移動をして使う.
+などで変形や移動をして使えばよい.
 これらは, アニメーションになるわけではない.
 
 
-`manim.animation.creation.Create()`
+* `manim.animation.creation.Create()`
+* `manim.animation.fading.FadeIn()`
+* `manim.animation.fading.FadeOut()`
 
 
 

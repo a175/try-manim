@@ -213,12 +213,15 @@ manim.mobject.types.vectorized_mobject.VGroup(*li)
 作ったあとなら, `.set_color()`で色を変更できる.
 色の指定には,
 定数を使ってもよいが, `'#123456'`みたに文字列で与えてもよい.
+アルファ値は指定しても無視される様に思える.
+`opacity`を設定すれば良いみたいだが, むちゃくちゃ重くなる.
 
 
 アニメーションは例えば以下のものがある:
 * `manim.animation.creation.Create()` 
 * `manim.animation.fading.FadeIn()`
 * `manim.animation.fading.FadeOut()`
+* `manim.animation.transform.Transform()`
 
 
 

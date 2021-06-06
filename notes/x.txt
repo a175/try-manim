@@ -250,3 +250,36 @@ networkx 2.5.1 has requirement decorator<5,>=4.3, but you'll have decorator 5.0.
 manim.mobject.geometry.RegularPolygon
 ```
 
+
+位置関係の定数は, Y軸が`manim.constants.UP`, Z軸が`manim.constants.OUT` 覚えにくい.
+
+
+3次元の図を書く場合は`Scene`の代わりに以下を拡張する: 
+```
+manim.scene.three_d_scene.ThreeDScene
+```
+`SpecialThreeDScene`というのもあるみたいだけどまだ見ていない.
+
+基本的に基底クラスを変更するだけでよいみたい.
+
+
+初期は (0,0,\infty)から見下ろした図.
+どこから見下ろすかはいかのように極座標で指定すればよい.
+```
+self.set_camera_orientation(phi=0.4 * manim.constants.PI, theta=-0.25 * manim.constants.PI)
+```        
+途中から指定してもよいが, 標準ではいきなりカメラワークが変わる.
+図形を変更しているわけではないので, `transform` とか使ってもだめ.
+以下を使う:
+```
+self.move_camera(phi=0.4 * manim.constants.PI, theta=-0.25 * manim.constants.PI)
+```
+このとき, 同時に実行するアニメーションがあるなら`added_anims=[anim_1,anim_2]`のように指定すれば良いようだ.
+
+
+`MObject`や`Group`を移動するのを, アニメーションにするなら,
+そのオブジェクトにある`.animate.shift`を使えば良い.
+(新しい座標のオブジェクトを作ってTransformするより簡単)
+`set_color` なども, うまく機能する.
+また自分で実装したものもでも, 特に何も設定をしなくともうまく機能する.
+

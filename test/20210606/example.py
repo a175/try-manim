@@ -1,6 +1,7 @@
 import manim
 
-class MyScene(manim.scene.scene.Scene):
+#class MyScene(manim.scene.scene.Scene):
+class MyScene(manim.scene.three_d_scene.ThreeDScene):
     def codestr2code(self,codestr):
         code=[(None,None)]
         cix=None
@@ -59,11 +60,13 @@ class MyScene(manim.scene.scene.Scene):
         
     def construct(self):
         codestr = '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.+.+.>++++++++++.'
-        codestr = '+.>++++++++++.'
+        #codestr = '+.>++++++++++.'
         #code = [('+',4),('-',4)]
         code = self.codestr2code(codestr)
         print(code)        
         mcs = []
+        
+        #self.set_camera_orientation(phi=0.4 * manim.constants.PI, theta=-0.25 * manim.constants.PI)
         for (i,(ci,ni)) in enumerate(reversed(code)):
             print((i,(ci,ni)))
             mc=self.get_mc(i,ci,ni)
@@ -75,23 +78,14 @@ class MyScene(manim.scene.scene.Scene):
         
         mcs.reverse()
         mcs_vg=manim.mobject.types.vectorized_mobject.VGroup(*mcs)
-        mcs_vg_old=mcs_vg
-        mcs_vg_new=mcs_vg_old.copy()
-        mcs_vg_new.set_color("#AAAADD")
-        self.play(manim.animation.transform.Transform(mcs_vg_old,mcs_vg_new))
-        self.wait()
-        
-        mcs_vg_old=mcs_vg_new
-        mcs_vg_new=mcs_vg_old.copy()
-        mcs_vg_new.set_color("#777788")
-        mcs_vg_new.set_z_index(-1)
-        prev_out_anim=manim.animation.transform.Transform(mcs_vg_old,mcs_vg_new)
-
-        i=0
+        self.play(mcs_vg.animate.set_color("#AAAADD"))
+        self.move_camera(phi=0.3 * manim.constants.PI)        
+        prev_out_anim=mcs_vg.animate.set_color("#777788")
         bf_tape=[0 for i in range(30000)]
         bf_pointer=0
         output_int=[]
         output_str=""
+        i=0
         while i < len(mcs):
             if code[i][0] == '+':
                 bf_tape[bf_pointer]=bf_tape[bf_pointer]+code[i][1]
@@ -117,55 +111,43 @@ class MyScene(manim.scene.scene.Scene):
             elif code[i][0] == '[':
                 if bf_tape[bf_pointer] == 0:
                     i=code[i][1]
+                continue
             elif code[i][0] == ']':
                 if bf_tape[bf_pointer] != 0:
                     i=code[i][1]
+                continue
 
             print(i,bf_pointer,bf_tape[:10])
                 
             mc_0=mcs[i].copy()
-            mc_0.set_circle_color("#AAAAFF")
-            mc_0.set_circle_color("#EEEEFF")
-            #mc_0.set_z_index(2)
-            mc_0.shift(manim.constants.OUT)
-            ###@@@@@
+            #current_in_anim=mc_0.animate.set_circle_color("#EEEEFF")
+            current_in_anim=mc_0.animate.set_color("#EEEEFF")
+            #current_in_anim2=mc_0.animate.shift(0.4*manim.constants.OUT)
             ag = manim.animation.composition.AnimationGroup(
-                manim.animation.fading.FadeIn(mc_0),
+                current_in_anim,
+                #current_in_anim2,
                 prev_out_anim
             )
             self.play(ag)
+            self.play(mc_0.animate.shift(0.4*manim.constants.OUT))
 
             p0 = mc_0.get_one_polygon()            
-            p0.set_z_index(1)
             p0.set_color("#8888FF")
+            self.play(p0.animate.shift(0.2*manim.constants.OUT))
             self.play(manim.animation.rotation.Rotate(p0,mc_0.angle,about_point=manim.constants.ORIGIN))
+            self.play(p0.animate.shift(-0.2*manim.constants.OUT))
             self.remove(p0)
+
+            self.play(mc_0.animate.shift(-0.4*manim.constants.OUT))
             prev_out_anim=manim.animation.fading.FadeOut(mc_0)
             
             i=i+1
 
         self.play(prev_out_anim)
-        mcs_vg.set_color("#555555")
-        self.play(manim.animation.transform.Transform(mcs_vg_new,mcs_vg))
+        self.play(mcs_vg.animate.set_color("#555555"))
         
         self.wait()
 
-        # for mc in mcs0:
-        #     mc = mc.copy()
-        #     #mc.set_color("#BBBBEE")
-        #     mc.set_color("#AAAADD")
-        #     mcs1.append(mc)
-        # mcs1_vg=manim.mobject.types.vectorized_mobject.VGroup(*mcs1)
-        # self.play(manim.animation.transform.Transform(mcs0_vg,mcs1_vg))
-        # self.wait()
-        # mcs2=[]
-        # for mc in mcs0:
-        #     mc = mc.copy()
-        #     #mc.set_color("#BBBBEE")
-        #     mc.set_color("#777788")
-        #     mcs2.append(mc)
-        # mcs2_vg=manim.mobject.types.vectorized_mobject.VGroup(*mcs2)
-        # self.play(manim.animation.transform.Transform(mcs1_vg,mcs2_vg))
 
 
 

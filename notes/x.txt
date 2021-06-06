@@ -225,3 +225,28 @@ manim.mobject.types.vectorized_mobject.VGroup(*li)
 
 
 
+## 2021/06/06
+
+
+とりあえず, 前回の続きをするのに, `test/20210606` をつくりファイルをコピー.
+いきあたりばったりで増殖したコードを少し整理.
+```
+~/.local/bin/manim -ql example.py MyScene
+```
+`v0.7.0`が最新版だとでたので,
+```
+pip3  install --user --upgrade manim
+```
+を叩く.
+```
+networkx 2.5.1 has requirement decorator<5,>=4.3, but you'll have decorator 5.0.9 which is incompatible.
+```
+と言われるがとりあえず動いているようなので無視.
+
+
+仕様が変わったものがいくつかあるようだ.
+例えば以下のコンストラクタの`start_angle`はキーワード引数に変更になったようだ:
+```
+manim.mobject.geometry.RegularPolygon
+```
+

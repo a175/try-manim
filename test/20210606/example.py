@@ -1,5 +1,5 @@
 import manim
-manim._config.utils.ManimConfig.frame_width=40
+manim._config.utils.ManimConfig.frame_width=45
 
 #class MyScene(manim.scene.scene.Scene):
 class MyScene(manim.scene.three_d_scene.ThreeDScene):
@@ -148,7 +148,6 @@ class MyScene(manim.scene.three_d_scene.ThreeDScene):
                 tape_text.rotate(-0.5*manim.constants.PI,axis=manim.constants.LEFT,about_point=manim.constants.ORIGIN)
                 tape_text.align_to(tt[bf_pointer],direction=[1,1,1])
                 tape_anim = manim.animation.transform.Transform(tt[bf_pointer],tape_text)
-                tt[bf_pointer]=tape_text
 
             elif code[i][0] == '>':
                 bf_pointer=bf_pointer+code[i][1]

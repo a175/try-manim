@@ -73,6 +73,9 @@ class MyScene(manim.scene.three_d_scene.ThreeDScene):
 
 
         print(nn,self.camera.get_distance())
+        print(nn,self.camera.get_phi()/ manim.constants.PI)
+        print(nn,self.camera.get_theta()/ manim.constants.PI)
+        
         
         #self.camera.set_distance(nn*10)
         
@@ -208,7 +211,7 @@ class MyScene(manim.scene.three_d_scene.ThreeDScene):
 
         self.play(prev_out_anim)
         self.play(mcs_vg.animate.set_color("#555555"))
-        
+        self.move_camera(phi=0 * manim.constants.PI,theta=-0.5*manim.constants.PI)
         self.wait()
 
 

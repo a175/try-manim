@@ -223,6 +223,17 @@ manim.mobject.types.vectorized_mobject.VGroup(*li)
 * `manim.animation.fading.FadeOut()`
 * `manim.animation.transform.Transform()`
 
+transform した場合, もとのオブジェクトが変更されているようにも見える.
+A->B->C と変形していく場合,
+A, B, Cを作った後, Aを配置していたら,
+play(Transform(A,B))
+play(Transform(A,C))
+みたいな感じでやる必要があるように見える.
+play(Transform(A,B))
+play(Transform(B,C))
+じゃないと行けない場合もあるみたいなので, よくわからない.
+
+
 
 
 ## 2021/06/06
@@ -282,4 +293,7 @@ self.move_camera(phi=0.4 * manim.constants.PI, theta=-0.25 * manim.constants.PI)
 (新しい座標のオブジェクトを作ってTransformするより簡単)
 `set_color` なども, うまく機能する.
 また自分で実装したものもでも, 特に何も設定をしなくともうまく機能する.
+
+
+
 
